@@ -2,7 +2,7 @@
 
 Rest Api Authorization with express/JWT/NodeJs/Postgresql
 
-##dependency
+## Dependency
 
 install Npm for start use project.
 
@@ -14,7 +14,7 @@ sudo apt-get install npm
 
 This project uses Node.js to manage the project's environment.
 
-###Follow command for use App
+### Follow command for use App
 
 ```shell
 
