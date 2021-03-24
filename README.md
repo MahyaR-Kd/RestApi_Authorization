@@ -34,4 +34,4 @@ use `postman_collection.json` File for send request with PostMan.
 
 ## TODO:
 
-- [ ] Add rigester with phoneNumber and userName 
+- [x] Add rigester with phoneNumber and userName 

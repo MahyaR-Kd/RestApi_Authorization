@@ -1,5 +1,5 @@
 const { genSaltSync, hashSync, compareSync } = require('bcrypt');
-const { create, getUserByEmail, getUsers, getUserById, updateUser, deleteUser } = require('./user.service');
+const { create, getUserByEmail, getUsers, getUserById, updateUser, deleteUser, getUserByPhone, getUserByUserName } = require('./user.service');
 const { sign } = require('jsonwebtoken')
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
             });
         });
     },
-    getUserById: (req, res) =>{
+    getUserById: (req, res) => {
         const id = req.params.id;
         getUserById(id, (err, results) => {
             if (err) {
@@ -43,8 +43,46 @@ module.exports = {
                 });
             }
             return res.json({
-              success: 1,
-              data: results["rows"]
+                success: 1,
+                data: results["rows"]
+            });
+        });
+    },
+    getUserByPhone: (req, res) => {
+        const phone = req.params.phone;
+        getUserByPhone(phone, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (results["rows"].length === 0) {
+                return res.json({
+                    success: 0,
+                    message: "Record not found!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results["rows"]
+            });
+        });
+    },
+    getUserByUserName: (req, res) => {
+        const username = req.params.username;
+        getUserByUserName(username, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            if (results["rows"].length === 0) {
+                return res.json({
+                    success: 0,
+                    message: "Record not found!"
+                });
+            }
+            return res.json({
+                success: 1,
+                data: results["rows"]
             });
         });
     },
@@ -52,7 +90,7 @@ module.exports = {
         getUsers((err, results) => {
             if (err) {
                 console.log(err);
-                return; 
+                return;
             }
             if (results["rows"].length === 0) {
                 return res.json({
@@ -71,7 +109,7 @@ module.exports = {
         const salt = genSaltSync(10);
         body.password = hashSync(body.password, salt);
         updateUser(body, (err, results) => {
-            if (err){
+            if (err) {
                 console.log(err);
                 return;
             }
@@ -111,39 +149,125 @@ module.exports = {
     },
     login: (req, res) => {
         const body = req.body;
-        getUserByEmail(body.email, (err, results) => {
-            if (err) {
-                console.log(err);
-            }
-            if (!results) {
-                console.log(results)
-                return res.json({
-                    success: 0,
-                    message: "Invalid email or password!"
-                });
-            }
-            const result = compareSync(body.password, results.password);
-            if (result) {
-                results.password = undefined;
-                const jsontoken = sign({ 
-                    email: results.email,
-                    userId: results.id 
-                }, "aqwesrxctvyibunizxrdctfvygbuh789645", {
-                    expiresIn: "1h"
-                });
-                return res.json({
-                    success: 1,
-                    message: "login successfully",
-                    token: jsontoken 
-                    
-                });
-            }else{
-                return res.json({
-                    success: 0,
-                    message: "Invalid email or password!"
-                });
-            }
+        if (Object.keys(body).length == 2) {
+            if (body.email) {
+                console.log('email')
+                getUserByEmail(body.email, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    if (!results) {
+                        console.log(results)
+                        return res.json({
+                            success: 0,
+                            message: "Invalid email or password!"
+                        });
+                    }
+                    const result = compareSync(body.password, results.password);
+                    if (result) {
+                        results.password = undefined;
+                        const jsontoken = sign({
+                            email: results.email,
+                            userId: results.id
+                        }, "aqwesrxctvyibunizxrdctfvygbuh789645", {
+                            expiresIn: "1h"
+                        });
+                        return res.json({
+                            success: 1,
+                            message: "login successfully",
+                            token: jsontoken
 
-        })
+                        });
+                    } else {
+                        return res.json({
+                            success: 0,
+                            message: "Invalid email or password!"
+                        });
+                    }
+
+                });
+            }
+            if (body.phone) {
+                console.log('phone')
+                getUserByPhone(body.phone, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    if (!results) {
+                        console.log(results)
+                        return res.json({
+                            success: 0,
+                            message: "Invalid phone or password!"
+                        });
+                    }
+                    const result = compareSync(body.password, results.password);
+                    if (result) {
+                        results.password = undefined;
+                        const jsontoken = sign({
+                            phone: results.phone,
+                            userId: results.id
+                        }, "aqwesrxctvyibunizxrdctfvygbuh789645", {
+                            expiresIn: "1h"
+                        });
+                        return res.json({
+                            success: 1,
+                            message: "login successfully",
+                            token: jsontoken
+
+                        });
+                    } else {
+                        return res.json({
+                            success: 0,
+                            message: "Invalid phone or password!"
+                        });
+                    }
+
+                })
+            }
+            if (body.username) {
+                console.log('username')
+                getUserByUserName(body.username, (err, results) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    if (!results) {
+                        console.log(results)
+                        return res.json({
+                            success: 0,
+                            message: "Invalid username or password!"
+                        });
+                    }
+                    const result = compareSync(body.password, results.password);
+                    if (result) {
+                        results.password = undefined;
+                        const jsontoken = sign({
+                            username: results.username,
+                            userId: results.id
+                        }, "aqwesrxctvyibunizxrdctfvygbuh789645", {
+                            expiresIn: "1h"
+                        });
+                        return res.json({
+                            success: 1,
+                            message: "login successfully",
+                            token: jsontoken
+
+                        });
+                    } else {
+                        return res.json({
+                            success: 0,
+                            message: "Invalid phone or password!"
+                        });
+                    }
+
+                })
+            }
+        }else{
+            res.json({
+                success: 0,
+                message: "Your Enter Too Many Arguments!"
+
+            })
+        }
     }
+
 }
