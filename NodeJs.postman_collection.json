@@ -15,7 +15,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"email\":\"exam@gmail.com\",\n\"password\":\"123456789\"\n}",
+					"raw": "{\n\"phone\":\"09308978924\",\n\"password\":\"123456789\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -43,21 +43,11 @@
 		{
 			"name": "127.0.0.1:3000/api/users",
 			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1AZ21haWwuY29tIiwidXNlcklkIjozNSwiaWF0IjoxNjE2MzEzMDQ4LCJleHAiOjE2MTYzMTY2NDh9.lkF2LOdNExN1UEpzLwHj2nGj0Z1WK9YYKZv07uKDSOc",
-							"type": "string"
-						}
-					]
-				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"firstname\":\"mahyar\",\n\"lastname\":\"kakvand\",\n\"email\":\"exam2@gmail.com\",\n\"password\":\"123456789\"\n\n}",
+					"raw": "{\n\"firstname\":\"mahyar\",\n\"lastname\":\"kakvand\",\n\"email\":\"exam3@gmail.com\",\n\"phone\":\"09308878924\",\n\"username\":\"mahyar__kd\",\n\"password\":\"123456789\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,7 +82,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1AZ21haWwuY29tIiwidXNlcklkIjozNSwiaWF0IjoxNjE2MzEzMDQ4LCJleHAiOjE2MTYzMTY2NDh9.lkF2LOdNExN1UEpzLwHj2nGj0Z1WK9YYKZv07uKDSOc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjA5MzA4OTc4OTI0IiwidXNlcklkIjo1LCJpYXQiOjE2MTY3MDYwMTYsImV4cCI6MTYxNjcwOTYxNn0.Oj1PnDB-R8o0Guby0jdBoR5PmN-WhGicSgBq2xLWLH0",
 							"type": "string"
 						}
 					]
@@ -188,7 +178,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1AZ21haWwuY29tIiwidXNlcklkIjozNSwiaWF0IjoxNjE2MzEzMDQ4LCJleHAiOjE2MTYzMTY2NDh9.lkF2LOdNExN1UEpzLwHj2nGj0Z1WK9YYKZv07uKDSOc",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjA5MzA4OTc4OTI0IiwidXNlcklkIjo1LCJpYXQiOjE2MTY3MDYwMTYsImV4cCI6MTYxNjcwOTYxNn0.Oj1PnDB-R8o0Guby0jdBoR5PmN-WhGicSgBq2xLWLH0",
 							"type": "string"
 						}
 					]
@@ -197,7 +187,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 43\n}",
+					"raw": "{\n    \"phone\": \"09308878924\",\n    \"password\":\"123456789\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -217,6 +207,36 @@
 						"api",
 						"users",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "127.0.0.1:3000/db",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"db_bild\":\"Yes\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:3000/db",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"db"
 					]
 				}
 			},
