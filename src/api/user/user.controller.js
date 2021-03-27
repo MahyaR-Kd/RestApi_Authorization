@@ -212,10 +212,23 @@ module.exports = {
     },
     login: (req, res) => {
         const body = req.body;
+        const username = body.username;
+        let email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let phone = /^(0)?([ 0-9]){11}$/;
+        let user = /\w+\D/;
+
         if (Object.keys(body).length == 2) {
-            if (body.email) {
+            let email_result = email.test(username)
+            let phone_result = phone.test(username)
+            let username_result = user.test(username)
+
+            console.log(email_result)
+            console.log(phone_result)
+            console.log(username_result)
+            
+            if (email_result) {
                 console.log('email')
-                getUserByEmail(body.email, (err, results) => {
+                getUserByEmail(username, (err, results) => {
                     if (err) {
                         console.log(err);
                     }
@@ -250,9 +263,9 @@ module.exports = {
 
                 });
             }
-            if (body.phone) {
+            else if (phone_result) {
                 console.log('phone')
-                getUserByPhone(body.phone, (err, results) => {
+                getUserByPhone(username, (err, results) => {
                     if (err) {
                         console.log(err);
                     }
@@ -287,9 +300,9 @@ module.exports = {
 
                 })
             }
-            if (body.username) {
+            else if (username_result) {
                 console.log('username')
-                getUserByUserName(body.username, (err, results) => {
+                getUserByUserName(username, (err, results) => {
                     if (err) {
                         console.log(err);
                     }
@@ -322,6 +335,13 @@ module.exports = {
                         });
                     }
 
+                })
+            }
+            else {
+                res.json({
+                    success: 0,
+                    message: "Your Enter Not Valid!"
+    
                 })
             }
         } else {

@@ -15,7 +15,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"phone\":\"09308978924\",\n\"password\":\"123456789\"\n}",
+					"raw": "{\n\"username\":\"mahyar_kd\",\n\"password\":\"123456789\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -82,7 +82,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZSI6IjA5MzA4OTc4OTI0IiwidXNlcklkIjo1LCJpYXQiOjE2MTY3MDYwMTYsImV4cCI6MTYxNjcwOTYxNn0.Oj1PnDB-R8o0Guby0jdBoR5PmN-WhGicSgBq2xLWLH0",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haHlhcl9rZCIsInVzZXJJZCI6NSwiaWF0IjoxNjE2ODM5NDQ2LCJleHAiOjE2MTY4NDMwNDZ9.lx1i2lV41gqktJCXxAbacwa5QbX_SrOVBxOG8kSpYu8",
 							"type": "string"
 						}
 					]

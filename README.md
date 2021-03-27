@@ -26,7 +26,7 @@ npm install express bcrypt jsonwebtoken pg
 start service with command
 
 ```shell
-npm run start
+npm run server
 ```
 ##### Then:
 
