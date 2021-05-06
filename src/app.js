@@ -14,6 +14,6 @@ app.use('/api/users/', UserRouter);
 app.use('/db', DB_Router);
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3030;
 app.listen(PORT,() => console.info(`Server has started on ${PORT}`));
 

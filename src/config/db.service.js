@@ -11,7 +11,13 @@ module.exports = {
                 EMAIL  TEXT NOT NULL,PHONE  TEXT NOT NULL, \
                 USERNAME  TEXT NOT NULL, PASSWORD TEXT NOT NULL,\
                 REGISTER BOOL DEFAULT 'F',\
-                CREATE_AT TIMESTAMPTZ DEFAULT Now());"
+                CREATE_AT TIMESTAMPTZ DEFAULT Now());",
+            (error, results, fields) => {
+                if (error) {
+                    return callback(error);
+                }
+                return callback(null, results)
+            }
         );
     },
 }
